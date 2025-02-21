@@ -16,6 +16,7 @@ const EpipTypeCalendar = "EU_PI_CALENDAR"
 const EpipTypeLineOffer = "EU_PI_LINE_OFFER"
 const EpipTypeNetworkOffer = "EU_PI_NETWORK_OFFER"
 const EpipTypeStopOffer = "EU_PI_STOP_OFFER"
+const EpipTypeMobility = "EU_PI_MOBILITY"
 
 // Specific frame + valid epip type
 
@@ -25,6 +26,7 @@ const TypeSiteFrameStop = "SiteFrame-" + EpipTypeStop
 const TypeServiceFrameNetwork = "ServiceFrame-" + EpipTypeNetwork
 const TypeTimetableFrameTimetable = "TimetableFrame-" + EpipTypeTimetable
 const TypeServiceCalendarFrameCalendar = "ServiceCalendarFrame-" + EpipTypeCalendar
+const TypeMobilityServiceFrameMobility = "MobilityServiceFrame-" + EpipTypeMobility
 
 // Composite frame + valid epip type
 
