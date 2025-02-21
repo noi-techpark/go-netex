@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2025 NOI Techpark <digital@noi.bz.it>
+//
+// SPDX-License-Identifier: MPL-2.0
+
 package netex
 
 const XsiNamespace = "http://www.w3.org/2001/XMLSchema-instance"
