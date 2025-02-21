@@ -7,9 +7,6 @@ import (
 	"time"
 )
 
-const XsiNamespace = "http://www.w3.org/2001/XMLSchema-instance"
-const NetexNamespace = "http://www.netex.org.uk/netex"
-
 type PublicationDelivery struct {
 	XMLName              xml.Name `xml:"http://www.netex.org.uk/netex PublicationDelivery"`
 	Version              string   `xml:"version,attr"`
