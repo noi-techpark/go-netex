@@ -63,8 +63,8 @@ type SiteFrame struct {
 	Id             string   `xml:"id,attr"`
 	Version        string   `xml:"version,attr"`
 	TypeOfFrameRef Ref
-	Parkings       []Parking   `xml:"parkings>Parking"`
-	StopPlaces     []StopPlace `xml:"stopPlaces>StopPlace"`
+	Parkings       []Parking   `xml:"parkings>Parking,omitempty"`
+	StopPlaces     []StopPlace `xml:"stopPlaces>StopPlace,omitempty"`
 }
 
 type Operator struct {
