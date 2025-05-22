@@ -52,10 +52,10 @@ type ResourceFrame struct {
 	Version        string   `xml:"version,attr"`
 	TypeOfFrameRef Ref
 
-	Operators   *[]Operator          `xml:"organisations>Operator"`
-	CarModels   *[]CarModelProfile   `xml:"vehicleModelProfiles>CarModelProfile"`
-	CycleModels *[]CycleModelProfile `xml:"vehicleModelProfiles>CycleModelProfile"`
-	Vehicles    *[]Vehicle           `xml:"vehicles>Vehicle"`
+	Operators   Maybe[[]Operator]          `xml:"organisations>Operator"`
+	CarModels   Maybe[[]CarModelProfile]   `xml:"vehicleModelProfiles>CarModelProfile"`
+	CycleModels Maybe[[]CycleModelProfile] `xml:"vehicleModelProfiles>CycleModelProfile"`
+	Vehicles    Maybe[[]Vehicle]           `xml:"vehicles>Vehicle"`
 }
 
 type SiteFrame struct {
@@ -63,8 +63,8 @@ type SiteFrame struct {
 	Id             string   `xml:"id,attr"`
 	Version        string   `xml:"version,attr"`
 	TypeOfFrameRef Ref
-	Parkings       *[]Parking   `xml:"parkings>Parking"`
-	StopPlaces     *[]StopPlace `xml:"stopPlaces>StopPlace"`
+	Parkings       Maybe[[]Parking]   `xml:"parkings>Parking"`
+	StopPlaces     Maybe[[]StopPlace] `xml:"stopPlaces>StopPlace"`
 }
 
 type Operator struct {
@@ -162,21 +162,21 @@ type CycleModelProfile struct {
 type CarModelProfile struct {
 	Id              string `xml:"id,attr"`
 	Version         string `xml:"version,attr"`
-	ChildSeat       string
-	Seats           uint8
-	Doors           uint8
-	Transmission    string
-	CruiseControl   bool
-	SatNav          bool
-	AirConditioning bool
-	Convertible     bool
-	UsbPowerSockets bool
-	WinterTyres     bool
-	Chains          bool
-	TrailerHitch    bool
-	RoofRack        bool
-	CycleRack       bool
-	SkiRack         bool
+	ChildSeat       Maybe[string]
+	Seats           Maybe[uint8]
+	Doors           Maybe[uint8]
+	Transmission    Maybe[string]
+	CruiseControl   Maybe[bool]
+	SatNav          Maybe[bool]
+	AirConditioning Maybe[bool]
+	Convertible     Maybe[bool]
+	UsbPowerSockets Maybe[bool]
+	WinterTyres     Maybe[bool]
+	Chains          Maybe[bool]
+	TrailerHitch    Maybe[bool]
+	RoofRack        Maybe[bool]
+	CycleRack       Maybe[bool]
+	SkiRack         Maybe[bool]
 }
 
 type Submode struct {
@@ -228,9 +228,9 @@ type Parking struct {
 	ParkingLayout                   string
 	PrincipalCapacity               int32
 	TotalCapacity                   int32
-	ProhibitedForHazardousMaterials N[bool]
-	RechargingAvailable             N[bool]
-	Secure                          N[bool]
+	ProhibitedForHazardousMaterials Maybe[bool]
+	RechargingAvailable             Maybe[bool]
+	Secure                          Maybe[bool]
 	ParkingReservation              string
 	ParkingProperties               any
 }
@@ -453,32 +453,10 @@ type TimetableFrame struct {
 	VehicleJourneys []ServiceJourney `xml:"vehicleJourneys>ServiceJourney"`
 }
 
-// Nullable wrapper. If not explicitly set, it doesn't render in xml
-type N[T any] struct {
-	set bool
-	v   *T
-}
+// Wrapper for optional values
+type Maybe[T any] *T
 
-// Sets value and makes it render
-func (n *N[t]) Set(v t) {
-	n.set = true
-	n.v = &v
-}
-
-// like set, but if value is nil, don't render
-func (n *N[t]) Maybe(v *t) {
-	n.set = v == nil
-	n.v = v
-}
-
-// Don't render value
-func (n *N[t]) Ignore() {
-	n.Maybe(nil)
-}
-
-func (n *N[any]) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	if n.set {
-		return e.EncodeElement(n.v, start)
-	}
-	return nil
+// Helper to populate optionals with literals e.g. Just(true), Just(3)
+func Just[T any](t T) Maybe[T] {
+	return &t
 }
