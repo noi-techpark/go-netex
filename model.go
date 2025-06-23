@@ -130,7 +130,7 @@ type Fleet struct {
 	Id           string `xml:"id,attr"`
 	Version      string `xml:"version,attr"`
 	ValidBetween ValidBetween
-	Members      []Ref `xml:"members>VehicleRef"`
+	Members      Maybe[[]Ref] `xml:"members>VehicleRef"`
 	OperatorRef  Ref
 }
 
