@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2025 NOI Techpark <digital@noi.bz.it>
+//
+// SPDX-License-Identifier: MPL-2.0
+
 package netex_test
 
 import (
