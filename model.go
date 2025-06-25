@@ -206,7 +206,7 @@ type VehicleSharingService struct {
 
 type GmlPolygon struct {
 	XMLName xml.Name `xml:"http://www.opengis.net/gml/3.2 Polygon"`
-	Id      string   `xml:"id,attr"`
+	Id      string   `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Polygon string   `xml:",innerxml"`
 }
 
