@@ -377,7 +377,7 @@ type ServiceLink struct {
 }
 
 type LineString struct {
-	Id      string `xml:"id,attr"`
+	Id      string `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	PosList string `xml:"posList"`
 }
 
