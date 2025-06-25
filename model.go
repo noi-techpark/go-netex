@@ -287,7 +287,7 @@ type ServiceCalendarFrame struct {
 	XMLName         xml.Name `xml:"ServiceCalendarFrame"`
 	Id              string   `xml:"id,attr"`
 	Version         string   `xml:"version,attr"`
-	TypeOfFrameRef  Ref
+	TypeOfFrameRef  TypeOfFrameRef
 	ServiceCalendar []ServiceCalendar `xml:",omitempty"`
 }
 
@@ -415,7 +415,7 @@ type ServiceFrame struct {
 	XMLName             xml.Name `xml:"ServiceFrame"`
 	Id                  string   `xml:"id,attr"`
 	Version             string   `xml:"version,attr"`
-	TypeOfFrameRef      Ref
+	TypeOfFrameRef      TypeOfFrameRef
 	Routes              []Route                   `xml:"routes>Route"`
 	Lines               []Line                    `xml:"lines>Line"`
 	ScheduledStopPoints []ScheduledStopPoint      `xml:"scheduledStopPoints>ScheduledStopPoint"`
@@ -453,7 +453,7 @@ type TimetableFrame struct {
 	XMLName         xml.Name `xml:"TimetableFrame"`
 	Id              string   `xml:"id,attr"`
 	Version         string   `xml:"version,attr"`
-	TypeOfFrameRef  Ref
+	TypeOfFrameRef  TypeOfFrameRef
 	VehicleJourneys []ServiceJourney `xml:"vehicleJourneys>ServiceJourney"`
 }
 
