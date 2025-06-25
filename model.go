@@ -22,7 +22,7 @@ type CompositeFrame struct {
 	Id             string `xml:"id,attr"`
 	Version        string `xml:"version,attr"`
 	ValidBetween   ValidBetween
-	TypeOfFrameRef Ref
+	TypeOfFrameRef TypeOfFrameRef
 	Codespaces     struct {
 		Codespace struct {
 			Id          string `xml:"id,attr"`
@@ -50,7 +50,7 @@ type ResourceFrame struct {
 	XMLName        xml.Name `xml:"ResourceFrame"`
 	Id             string   `xml:"id,attr"`
 	Version        string   `xml:"version,attr"`
-	TypeOfFrameRef Ref
+	TypeOfFrameRef TypeOfFrameRef
 
 	Operators   Maybe[[]Operator]          `xml:"organisations>Operator"`
 	CarModels   Maybe[[]CarModelProfile]   `xml:"vehicleModelProfiles>CarModelProfile"`
@@ -62,7 +62,7 @@ type SiteFrame struct {
 	XMLName        xml.Name `xml:"SiteFrame"`
 	Id             string   `xml:"id,attr"`
 	Version        string   `xml:"version,attr"`
-	TypeOfFrameRef Ref
+	TypeOfFrameRef TypeOfFrameRef
 	Parkings       Maybe[[]Parking]   `xml:"parkings>Parking"`
 	StopPlaces     Maybe[[]StopPlace] `xml:"stopPlaces>StopPlace"`
 }
@@ -95,6 +95,10 @@ type Ref struct {
 	XMLName xml.Name
 	Ref     string `xml:"ref,attr"`
 	Version string `xml:"version,attr,omitempty"`
+}
+type TypeOfFrameRef struct {
+	Ref        string `xml:"ref,attr"`
+	VersionRef string `xml:"versionRef,attr,omitempty"`
 }
 
 // Avoid having the explicit namespace there for every Ref

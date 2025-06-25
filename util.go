@@ -35,10 +35,9 @@ func NewRef(name string, id string, version string) Ref {
 }
 
 // Create a TypeOfFrameRef with "epip:<name>"
-func NewTypeOfFrameRef(name string, version string) Ref {
-	r := Ref{}
+func NewTypeOfFrameRef(name string, version string) TypeOfFrameRef {
+	r := TypeOfFrameRef{}
 	r.Ref = "epip:" + name
-	r.Version = version
-	r.XMLName.Local = "TypeOfFrameRef"
+	r.VersionRef = version
 	return r
 }
