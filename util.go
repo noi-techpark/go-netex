@@ -47,10 +47,10 @@ func Just[T any](t T) Maybe[T] {
 	return &t
 }
 
-// Helper to populate Maybe slices with a length check. Returns nil if t is empty
-func JustSlice[T []any](t T) Maybe[T] {
-	if len(t) == 0 {
+// Helper to populate Maybe slices with a length check. Returns nil if is empty
+func JustSlice[T any, S []T](s S) Maybe[S] {
+	if len(s) == 0 {
 		return nil
 	}
-	return &t
+	return &s
 }
