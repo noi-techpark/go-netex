@@ -124,10 +124,10 @@ type MobilityServiceFrame struct {
 		DefaultCurrency string
 	}
 
-	Fleets                         []Fleet                         `xml:"fleets>Fleet"`
-	ModesOfOperation               []VehicleSharing                `xml:"modesOfOperation>VehicleSharing"`
-	MobilityServices               []VehicleSharingService         `xml:"mobilityServices>VehicleSharingService"`
-	MobilityServiceConstraintZones []MobilityServiceConstraintZone `xml:"mobilityServiceConstraintZones>MobilityServiceConstraintZone"`
+	Fleets                         Maybe[[]Fleet]                         `xml:"fleets>Fleet"`
+	ModesOfOperation               Maybe[[]VehicleSharing]                `xml:"modesOfOperation>VehicleSharing"`
+	MobilityServices               Maybe[[]VehicleSharingService]         `xml:"mobilityServices>VehicleSharingService"`
+	MobilityServiceConstraintZones Maybe[[]MobilityServiceConstraintZone] `xml:"mobilityServiceConstraintZones>MobilityServiceConstraintZone"`
 }
 
 type Fleet struct {
@@ -191,9 +191,9 @@ type Submode struct {
 }
 
 type VehicleSharing struct {
-	Id       string    `xml:"id,attr"`
-	Version  string    `xml:"version,attr"`
-	Submodes []Submode `xml:"submodes>Submode"`
+	Id       string           `xml:"id,attr"`
+	Version  string           `xml:"version,attr"`
+	Submodes Maybe[[]Submode] `xml:"submodes>Submode"`
 }
 
 type VehicleSharingService struct {
@@ -201,7 +201,7 @@ type VehicleSharingService struct {
 	Version           string `xml:"version,attr"`
 	VehicleSharingRef Ref
 	FloatingVehicles  bool
-	Fleets            []Ref `xml:"fleets>FleetRef"`
+	Fleets            Maybe[[]Ref] `xml:"fleets>FleetRef"`
 }
 
 type GmlPolygon struct {
@@ -255,11 +255,11 @@ type StopPlace struct {
 	PrivateCode   string
 	Centroid      Centroid
 	AccessModes   string
-	Levels        []Level `xml:"levels>Level"`
+	Levels        Maybe[[]Level] `xml:"levels>Level"`
 	PublicCode    string
 	TransportMode string
 	StopPlaceType string
-	Quays         []Quay `xml:"quays>Quay"`
+	Quays         Maybe[[]Quay] `xml:"quays>Quay"`
 }
 
 type Quay struct {
@@ -297,9 +297,9 @@ type ServiceCalendar struct {
 	Name               string
 	FromDate           string
 	ToDate             string
-	DayTypes           []DayType            `xml:"dayTypes>DayType"`
-	OperatingPeriods   []UicOperatingPeriod `xml:"operatingperiods>UicOperatingPeriod"`
-	DayTypeAssignments []DayTypeAssignment  `xml:"dayTypeAssignments>DayTypeAssignment"`
+	DayTypes           Maybe[[]DayType]            `xml:"dayTypes>DayType"`
+	OperatingPeriods   Maybe[[]UicOperatingPeriod] `xml:"operatingperiods>UicOperatingPeriod"`
+	DayTypeAssignments Maybe[[]DayTypeAssignment]  `xml:"dayTypeAssignments>DayTypeAssignment"`
 }
 
 type DayType struct {
@@ -398,7 +398,7 @@ type ServiceJourneyPattern struct {
 	RouteView struct {
 		LineRef Ref
 	}
-	PointsInSequence []StopPointInJourneyPattern `xml:"pointsInSequence>StopPointInJourneyPattern"`
+	PointsInSequence Maybe[[]StopPointInJourneyPattern] `xml:"pointsInSequence>StopPointInJourneyPattern"`
 }
 
 type StopPointInJourneyPattern struct {
@@ -416,12 +416,12 @@ type ServiceFrame struct {
 	Id                  string   `xml:"id,attr"`
 	Version             string   `xml:"version,attr"`
 	TypeOfFrameRef      TypeOfFrameRef
-	Routes              []Route                   `xml:"routes>Route"`
-	Lines               []Line                    `xml:"lines>Line"`
-	ScheduledStopPoints []ScheduledStopPoint      `xml:"scheduledStopPoints>ScheduledStopPoint"`
-	ServiceLinks        []ServiceLink             `xml:"serviceLinks>ServiceLink"`
-	StopAssignments     []PassengerStopAssignment `xml:"stopAssignments>PassengerStopAssignment"`
-	JourneyPatterns     []ServiceJourneyPattern   `xml:"journeyPatterns>ServiceJourneyPattern"`
+	Routes              Maybe[[]Route]                   `xml:"routes>Route"`
+	Lines               Maybe[[]Line]                    `xml:"lines>Line"`
+	ScheduledStopPoints Maybe[[]ScheduledStopPoint]      `xml:"scheduledStopPoints>ScheduledStopPoint"`
+	ServiceLinks        Maybe[[]ServiceLink]             `xml:"serviceLinks>ServiceLink"`
+	StopAssignments     Maybe[[]PassengerStopAssignment] `xml:"stopAssignments>PassengerStopAssignment"`
+	JourneyPatterns     Maybe[[]ServiceJourneyPattern]   `xml:"journeyPatterns>ServiceJourneyPattern"`
 }
 
 type TimetabledPassingTime struct {
@@ -443,7 +443,7 @@ type ServiceJourney struct {
 	DepartureTime            string
 	DepartureDayOffset       string
 	JourneyDuration          string
-	DayTypes                 []Ref `xml:"dayTypes>DayTypeRef"`
+	DayTypes                 Maybe[[]Ref] `xml:"dayTypes>DayTypeRef"`
 	ServiceJourneyPatternRef Ref
 	OperatorRef              Ref
 	PassingTimes             []TimetabledPassingTime `xml:"passingTimes>TimetabledPassingTime"`
@@ -454,7 +454,7 @@ type TimetableFrame struct {
 	Id              string   `xml:"id,attr"`
 	Version         string   `xml:"version,attr"`
 	TypeOfFrameRef  TypeOfFrameRef
-	VehicleJourneys []ServiceJourney `xml:"vehicleJourneys>ServiceJourney"`
+	VehicleJourneys Maybe[[]ServiceJourney] `xml:"vehicleJourneys>ServiceJourney"`
 }
 
 // Wrapper for optional values
