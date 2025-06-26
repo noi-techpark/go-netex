@@ -298,7 +298,7 @@ type ServiceCalendar struct {
 	FromDate           string
 	ToDate             string
 	DayTypes           Maybe[[]DayType]            `xml:"dayTypes>DayType"`
-	OperatingPeriods   Maybe[[]UicOperatingPeriod] `xml:"operatingperiods>UicOperatingPeriod"`
+	OperatingPeriods   Maybe[[]UicOperatingPeriod] `xml:"operatingPeriods>UicOperatingPeriod"`
 	DayTypeAssignments Maybe[[]DayTypeAssignment]  `xml:"dayTypeAssignments>DayTypeAssignment"`
 }
 
