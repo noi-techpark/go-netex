@@ -46,3 +46,11 @@ func NewTypeOfFrameRef(name string, version string) TypeOfFrameRef {
 func Just[T any](t T) Maybe[T] {
 	return &t
 }
+
+// Helper to populate Maybe slices with a length check. Returns nil if t is empty
+func JustSlice[T []any](t T) Maybe[T] {
+	if len(t) == 0 {
+		return nil
+	}
+	return &t
+}
