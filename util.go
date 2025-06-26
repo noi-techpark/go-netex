@@ -42,15 +42,27 @@ func NewTypeOfFrameRef(name string, version string) TypeOfFrameRef {
 	return r
 }
 
-// Helper to populate optionals with literals e.g. Just(true), Just(3)
+// Populate optionals with literals e.g. Just(true), Just(3)
 func Just[T any](t T) Maybe[T] {
 	return &t
 }
 
-// Helper to populate Maybe slices with a length check. Returns nil if is empty
+// Populate Maybe slices with a length check. Returns nil if is empty
 func JustSlice[T any, S []T](s S) Maybe[S] {
 	if len(s) == 0 {
 		return nil
 	}
 	return &s
+}
+
+// nil safe append for Maybe slices.
+func AppendMaybe[T any, MaybeSlice Maybe[[]T]](maybe MaybeSlice, elems ...T) MaybeSlice {
+	if len(elems) == 0 {
+		return maybe
+	}
+	if maybe == nil {
+		return &elems
+	}
+	ret := append(*maybe, elems...)
+	return &ret
 }
