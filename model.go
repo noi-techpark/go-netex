@@ -255,11 +255,11 @@ type StopPlace struct {
 	PrivateCode   string
 	Centroid      Centroid
 	AccessModes   string
+	Levels        []Level `xml:"levels>Level"`
 	PublicCode    string
 	TransportMode string
 	StopPlaceType string
-	Levels        []Level `xml:"levels>Level"`
-	Quays         []Quay  `xml:"quays>Quay"`
+	Quays         []Quay `xml:"quays>Quay"`
 }
 
 type Quay struct {
