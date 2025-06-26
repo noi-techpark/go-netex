@@ -41,3 +41,8 @@ func NewTypeOfFrameRef(name string, version string) TypeOfFrameRef {
 	r.VersionRef = version
 	return r
 }
+
+// Helper to populate optionals with literals e.g. Just(true), Just(3)
+func Just[T any](t T) Maybe[T] {
+	return &t
+}

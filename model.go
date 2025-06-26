@@ -459,8 +459,3 @@ type TimetableFrame struct {
 
 // Wrapper for optional values
 type Maybe[T any] *T
-
-// Helper to populate optionals with literals e.g. Just(true), Just(3)
-func Just[T any](t T) Maybe[T] {
-	return &t
-}
