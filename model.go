@@ -4,7 +4,6 @@ package netex
 
 import (
 	"encoding/xml"
-	"time"
 )
 
 type PublicationDelivery struct {
@@ -12,7 +11,7 @@ type PublicationDelivery struct {
 	Version              string   `xml:"version,attr"`
 	NsXsi                string   `xml:"xmlns:xsi,attr"`
 	XsiSchemaLocation    string   `xml:"xsi:schemaLocation,attr"`
-	PublicationTimestamp time.Time
+	PublicationTimestamp string
 	ParticipantRef       string
 	Description          string
 	DataObjects          []CompositeFrame `xml:"dataObjects>CompositeFrame"`
@@ -112,8 +111,8 @@ func (r *Ref) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 }
 
 type ValidBetween struct {
-	FromDate time.Time
-	ToDate   time.Time
+	FromDate string
+	ToDate   string
 }
 
 type MobilityServiceFrame struct {

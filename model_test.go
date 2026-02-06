@@ -2,22 +2,21 @@
 //
 // SPDX-License-Identifier: MPL-2.0
 
-package netex_test
+package netex
 
 import (
 	"encoding/xml"
+	"os"
 	"strings"
 	"testing"
-
-	"github.com/noi-techpark/go-netex"
 )
 
 func TestFleetMembers_Empty(t *testing.T) {
-	fleet := netex.Fleet{
-		Id:      netex.NewId("test"),
+	fleet := Fleet{
+		Id:      NewId("test"),
 		Version: "1.0",
 	}
-	fleet.Members = netex.Just([]netex.Ref{netex.NewRef("test", "test", "version")})
+	fleet.Members = Just([]Ref{NewRef("test", "test", "version")})
 
 	b, _ := xml.Marshal(fleet)
 	if !strings.Contains(string(b), "members") {
@@ -28,5 +27,19 @@ func TestFleetMembers_Empty(t *testing.T) {
 	b, _ = xml.Marshal(fleet)
 	if strings.Contains(string(b), "members") {
 		t.Error("xml contains members even though it shouldn't", string(b))
+	}
+}
+
+func Test_unmarshal(t *testing.T) {
+	// Contains some ISO 8601 (and notably not RFC 3339) dates
+	data, err := os.ReadFile("./testdata/sta.xml")
+	if err != nil {
+		t.Fatalf("failed opening trains file: %s", err)
+	}
+
+	var delivery PublicationDelivery
+	err = xml.Unmarshal(data, &delivery)
+	if err != nil {
+		t.Fatalf("failed unmarshal: %s", err)
 	}
 }
