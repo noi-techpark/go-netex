@@ -6,17 +6,14 @@ SPDX-License-Identifier: CC0-1.0
 
 # Golang language bindings for NeTEx
 This library aims to provides basic NeTEx bindings for golang that are more readable and intuitive to use than auto-generated ones.
-It is intended to be used with the golang `encoding/xml` library.
+It is intended to be used with the golang `encoding/xml` library both for marshalling and unmarshalling
 
 It is currently a partial implementation, based on the Italian profile, developed alongside our
-[Transmodel API](https://github.com/noi-techpark/transmodel-api), and covers those use cases:
-
-- bike sharing
-- car sharing
-- parking
-- flights
+[Transmodel API](https://github.com/noi-techpark/transmodel-api), and only covers it's use cases.
 
 That being said, we warmly welcome contributions to bring this towards complete NeTEx coverage.
+
+If you need any fields/structs that are not implemented yet, please open an Issue or a PR and we'll do our best to add it
 
 ## Usage
 `go get github.com/noi-techpark/go-netex`
