@@ -398,6 +398,7 @@ type ServiceJourneyPattern struct {
 		LineRef Ref
 	}
 	PointsInSequence Maybe[[]StopPointInJourneyPattern] `xml:"pointsInSequence>StopPointInJourneyPattern"`
+	DirectionType    string
 }
 
 type StopPointInJourneyPattern struct {
@@ -408,6 +409,7 @@ type StopPointInJourneyPattern struct {
 	OnwardServiceLinkRef  Ref
 	ForAlighting          bool
 	ForBoarding           bool
+	DestinationDisplayRef Ref
 }
 
 type ServiceFrame struct {
@@ -421,6 +423,17 @@ type ServiceFrame struct {
 	ServiceLinks        Maybe[[]ServiceLink]             `xml:"serviceLinks>ServiceLink"`
 	StopAssignments     Maybe[[]PassengerStopAssignment] `xml:"stopAssignments>PassengerStopAssignment"`
 	JourneyPatterns     Maybe[[]ServiceJourneyPattern]   `xml:"journeyPatterns>ServiceJourneyPattern"`
+	DestinationDisplays Maybe[[]DestinationDisplay]      `xml:"destinationDisplays>DestinationDisplay"`
+}
+type DestinationDisplay struct {
+	XMLName    xml.Name `xml:"DestinationDisplay"`
+	Id         string   `xml:"id,attr"`
+	Version    string   `xml:"version,attr"`
+	Name       string
+	ShortName  string
+	SideText   string
+	FrontText  string
+	PublicCode string
 }
 
 type TimetabledPassingTime struct {
@@ -446,6 +459,8 @@ type ServiceJourney struct {
 	ServiceJourneyPatternRef Ref
 	OperatorRef              Ref
 	PassingTimes             []TimetabledPassingTime `xml:"passingTimes>TimetabledPassingTime"`
+	LineRef                  Ref
+	TrainNumbers             Maybe[[]Ref] `xml:"trainNumbers>TrainNumberRef"`
 }
 
 type TimetableFrame struct {
