@@ -327,6 +327,7 @@ type DayTypeAssignment struct {
 	Version            string `xml:"version,attr"`
 	Order              string `xml:"order,attr"`
 	OperatingPeriodRef Ref
+	Date               string
 	DayTypeRef         Ref
 }
 
